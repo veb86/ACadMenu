@@ -15,6 +15,46 @@
         <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
       </RibbonPanelBreak>
     </RibbonPanelSource>
+    <RibbonPanelSource UID="ID_BOBROV_PANEL_SMARTLEADER" Text="Умные выноски" HiddenInEditor="false">
+      <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      <Name xlate="true" UID="XLS_BOBROV_PANEL_SMARTLEADER_NAME">Умные выноски</Name>
+      <RibbonRow UID="ID_BOBROV_PANEL_SMARTLEADER_ROW1">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <RibbonCommandButton UID="ID_BOBROV_RIBBON_SL_CREATE" Id="AcRibbonCommandButton" Text="Создать" ButtonStyle="LargeWithText" MenuMacroID="ID_BOBROV_SL_CREATE" KeyTip="">
+          <TooltipTitle xlate="true" UID="XLS_BOBROV_RIBBON_SL_CREATE_TIP">Создать</TooltipTitle>
+          <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        </RibbonCommandButton>
+        <RibbonCommandButton UID="ID_BOBROV_RIBBON_SL_CREATE_GROUP" Id="AcRibbonCommandButton" Text="Создать групповую" ButtonStyle="LargeWithText" MenuMacroID="ID_BOBROV_SL_CREATE_GROUP" KeyTip="">
+          <TooltipTitle xlate="true" UID="XLS_BOBROV_RIBBON_SL_CREATE_GROUP_TIP">Создать групповую</TooltipTitle>
+          <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        </RibbonCommandButton>
+        <RibbonCommandButton UID="ID_BOBROV_RIBBON_SL_UPDATE" Id="AcRibbonCommandButton" Text="Обновить" ButtonStyle="LargeWithText" MenuMacroID="ID_BOBROV_SL_UPDATE" KeyTip="">
+          <TooltipTitle xlate="true" UID="XLS_BOBROV_RIBBON_SL_UPDATE_TIP">Обновить</TooltipTitle>
+          <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        </RibbonCommandButton>
+        <RibbonCommandButton UID="ID_BOBROV_RIBBON_SL_RULES" Id="AcRibbonCommandButton" Text="Правила" ButtonStyle="LargeWithText" MenuMacroID="ID_BOBROV_SL_RULES" KeyTip="">
+          <TooltipTitle xlate="true" UID="XLS_BOBROV_RIBBON_SL_RULES_TIP">Правила</TooltipTitle>
+          <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        </RibbonCommandButton>
+      </RibbonRow>
+      <RibbonPanelBreak UID="ID_BOBROV_PANEL_SMARTLEADER_BREAK" Id="AcRibbonPanelBreak">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      </RibbonPanelBreak>
+    </RibbonPanelSource>
+    <RibbonPanelSource UID="ID_BOBROV_PANEL_DATABASE" Text="База данных" HiddenInEditor="false">
+      <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      <Name xlate="true" UID="XLS_BOBROV_PANEL_DATABASE_NAME">База данных</Name>
+      <RibbonRow UID="ID_BOBROV_PANEL_DATABASE_ROW1">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <RibbonCommandButton UID="ID_BOBROV_RIBBON_DB_EDIT" Id="AcRibbonCommandButton" Text="Редактор БД" ButtonStyle="LargeWithText" MenuMacroID="ID_BOBROV_DB_EDIT" KeyTip="">
+          <TooltipTitle xlate="true" UID="XLS_BOBROV_RIBBON_DB_EDIT_TIP">Редактор БД</TooltipTitle>
+          <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        </RibbonCommandButton>
+      </RibbonRow>
+      <RibbonPanelBreak UID="ID_BOBROV_PANEL_DATABASE_BREAK" Id="AcRibbonPanelBreak">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      </RibbonPanelBreak>
+    </RibbonPanelSource>
   </RibbonPanelSourceCollection>
   <RibbonTabSourceCollection>
     <RibbonTabSource Text="Bobrov" UID="ID_BOBROV_TAB" KeyTip="" DefaultDisplay="AddToWorkspace" WorkspaceBehavior="MergeOrAddTab">
@@ -22,6 +62,12 @@
       <Name xlate="true" UID="XLS_BOBROV_TAB_NAME">Bobrov</Name>
       <Alias>ID_BOBROVTAB</Alias>
       <RibbonPanelSourceReference UID="ID_BOBROV_TAB_PANEL_XDATA" PanelId="ID_BOBROV_PANEL_XDATA" ResizeStyle="Default">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      </RibbonPanelSourceReference>
+      <RibbonPanelSourceReference UID="ID_BOBROV_TAB_PANEL_SMARTLEADER" PanelId="ID_BOBROV_PANEL_SMARTLEADER" ResizeStyle="Default">
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+      </RibbonPanelSourceReference>
+      <RibbonPanelSourceReference UID="ID_BOBROV_TAB_PANEL_DATABASE" PanelId="ID_BOBROV_PANEL_DATABASE" ResizeStyle="Default">
         <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
       </RibbonPanelSourceReference>
     </RibbonTabSource>

@@ -2,46 +2,23 @@
 
 Меню и ribbon для моих модулей AutoCAD.
 
-Модуль **BobrovMenu** (задача [#1](https://github.com/veb86/ACadMenu/issues/1), ТЗ —
-[menu-module-spec.md](menu-module-spec.md)) добавляет в AutoCAD 2020–2024 x64 кнопку-переключатель
-**«Палитра XDATA»**, которая вызывает команду `XDATAPALETTE` плагина
-[acadPaletteSetXDATA](https://github.com/veb86/acadPaletteSetXDATA):
+Модуль **BobrovMenu** добавляет вкладку **Bobrov** на ленту AutoCAD 2020 и новее (Windows x64).
+AutoCAD загружает частичный `BobrovMenu.cuix` из пакета `BobrovMenu.bundle`. Макросы, панели
+и значки входят в CUIX. Команды предоставляют отдельно установленные плагины.
 
-| Где | Что |
-| --- | --- |
-| Строка меню (`MENUBAR` = 1) | выпадающее меню **Bobrov** → **Палитра XDATA** |
-| Лента | вкладка **Bobrov** → панель **Палитра XDATA** → большая кнопка **Палитра XDATA** |
-| Подсказка | «Показать или скрыть панель «Свойства XDATA» (XDATAPALETTE)» |
-| Макрос | `$M=$(if,$(getvar,cmdactive),^C^C)_XDATAPALETTE ` (отменяет только активную команду, выбор объектов сохраняется) |
-| Значки | 16×16 и 32×32, нейтральные, без состояния «включено/выключено» |
+| Панель Bobrov | Кнопка | Глобальная команда |
+| --- | --- | --- |
+| Палитра XDATA | Палитра XDATA | `_XDATAPALETTE` |
+| Умные выноски | Создать | `_SL_CREATE` |
+| Умные выноски | Создать групповую | `_SL_CREATE_GROUP` |
+| Умные выноски | Обновить | `_SL_UPDATE` |
+| Умные выноски | Правила | `_SL_RULES` |
+| База данных | Редактор БД | `_DB_EDIT` |
 
-![Значки 32×32 и 16×16 на светлом и тёмном фоне (увеличено)](docs/screenshots/icons-preview.png)
+![Предпросмотр вкладки Bobrov до и после изменения CUIX](docs/screenshots/bobrov-ribbon-comparison.png)
 
-Реализация кнопки «Палитра XDATA» — частичный CUIX `BobrovMenu.cuix` в пакете
-автозагрузки `BobrovMenu.bundle`, **без .NET и без LISP**. Меню и вкладку загружает сам AutoCAD,
-поэтому модуль ничего не пишет в командную строку, не запускает команд при запуске и не меняет
-`MENUBAR`, `WSCURRENT`, рабочие пространства и основной CUIX пользователя.
-
-## ACadSmartLeader
-
-В AutoCAD 2020, 2021–2024 и 2025+ x64 пакет добавляет вкладку **ACadSmartLeader** с панелью
-**Умные выноски**. Команды предоставляет отдельно установленный [ACadSmartLeader 0.1.4+](https://github.com/veb86/ACadSmartLeader/releases).
-
-| Кнопка | Глобальная команда |
-| --- | --- |
-| Создать | `_SL_CREATE` |
-| Создать групповую | `_SL_CREATE_GROUP` |
-| Обновить | `_SL_UPDATE` |
-| Правила | `_SL_RULES` |
-
-Для выбранной MLeader с XDATA `BobrovLeader` доступен контекстный пункт **Обновить умные выноски**.
-Оба способа обновления передают предварительное выделение штатной команде `_SL_UPDATE`.
-Если командная строка занята, AutoCAD предлагает завершить текущую команду и повторить действие.
-`SL_MENU_UNLOAD` снимает вкладку и контекстный пункт в текущем сеансе, `SL_MENU_LOAD` загружает их
-снова. Команды выносок доступны из командной строки.
-
-Модуль добавляет меню через .NET API AutoCAD и при обновлении снимает частичную группу
-`ACADSMARTLEADER` версии 0.1.3. Сценарии проверки в AutoCAD описаны в [протоколе приёмки](docs/smartleader-menu-acceptance.md).
+**Палитра XDATA** также доступна через выпадающее меню **Bobrov** при `MENUBAR=1`. Она
+показывает и скрывает палитру «Свойства XDATA». [ТЗ по палитре XDATA](menu-module-spec.md)
 
 ## Установка
 
@@ -50,7 +27,10 @@
 CI), распакуйте и запустите `install.cmd`. Подробная инструкция по установке, обновлению и
 удалению — [installer/manual/INSTALL.md](installer/manual/INSTALL.md).
 
-Плагин acadPaletteSetXDATA устанавливается отдельно.
+Для кнопок установите совместимые с вашей версией AutoCAD
+[acadPaletteSetXDATA](https://github.com/veb86/acadPaletteSetXDATA),
+[ACadSmartLeader 0.1.4+](https://github.com/veb86/ACadSmartLeader/releases) и
+плагин управления БД, предоставляющий `DB_EDIT`.
 
 ## Структура репозитория
 
@@ -58,16 +38,16 @@ CI), распакуйте и запустите `install.cmd`. Подробна�
 | --- | --- |
 | `installer/BobrovMenu.bundle/` | шаблон пакета: `PackageContents.xml` и готовый `Contents/BobrovMenu.cuix` |
 | `src/BobrovMenu.cuix/` | исходники CUIX — распакованные части (XML `.cui`, значки PNG), из которых собирается `BobrovMenu.cuix` |
-| `src/ACadSmartLeaderMenu/` | меню ACadSmartLeader и проект для трёх линеек AutoCAD |
 | `installer/manual/` | `install.cmd`, `uninstall.cmd`, `INSTALL.md` архива ручной установки |
 | `scripts/build_cuix.py` | собирает `BobrovMenu.cuix` из `src/BobrovMenu.cuix/`, проверяет (`--check`), распаковывает CUIX в исходники (`--unpack`) |
 | `scripts/make_icons.py` | рисует значки 16×16 и 32×32 |
 | `scripts/package.py` | собирает архив `BobrovMenu-manual-install-v<версия>.zip` |
 | `tests/` | автоматические проверки (Python `unittest`) |
 | `experiments/` | проверка `install.cmd`/`uninstall.cmd` в Windows, превью значков |
-| `docs/acceptance-protocol.md` | протокол приёмки по п. 8 ТЗ |
+| `docs/acceptance-protocol.md` | протокол приёмки палитры XDATA |
+| `docs/smartleader-menu-acceptance.md` | протокол приёмки кнопок выносок и БД |
 
-Для сборки архива нужны Python 3.8+ и SDK .NET 10. Библиотеки AutoCAD SDK восстанавливаются из NuGet.
+Для сборки архива нужен Python 3.8+.
 
 ## Сборка и проверка
 
@@ -75,13 +55,11 @@ CI), распакуйте и запустите `install.cmd`. Подробна�
 python3 scripts/make_icons.py --check     # значки совпадают с make_icons.py
 python3 scripts/build_cuix.py --check     # BobrovMenu.cuix совпадает с src/BobrovMenu.cuix
 python3 -m unittest discover -s tests -v  # структура CUIX, команда, меню, лента, пакет, архив
-dotnet build src/ACadSmartLeaderMenu -c Release -m:1
-dotnet run --project tests/ACadSmartLeaderMenu.Tests -c Release
-python3 scripts/package.py --version v0.1.0 --commit "$(git rev-parse HEAD)"  # artifacts/release/*.zip
+python3 scripts/package.py --version v0.2.0 --commit "$(git rev-parse HEAD)"  # artifacts/release/*.zip
 ```
 
 CI (`.github/workflows/ci.yml`) выполняет эти проверки, проверяет установку и удаление архива в
-Windows на временном `%APPDATA%`, а при push в `main` публикует релиз `v0.1.<номер сборки>`.
+Windows на временном `%APPDATA%`, а при push в `main` публикует релиз `v0.2.<номер сборки>`.
 
 ## Как изменить меню
 

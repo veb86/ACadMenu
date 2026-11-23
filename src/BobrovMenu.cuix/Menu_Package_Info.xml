@@ -2,7 +2,7 @@
 <MenuPackageParts>
   <PartData PartData_Name="/Header.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/WorkspaceRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
-  <PartData PartData_Name="/MenuGroup.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
+  <PartData PartData_Name="/MenuGroup.cui" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
   <PartData PartData_Name="/AcceleratorRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/OverrideRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/MouseButtonRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
@@ -11,7 +11,7 @@
   <PartData PartData_Name="/DoubleClickRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/QuickPropertiesRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/RolloverTooltipRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
-  <PartData PartData_Name="/RibbonRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
+  <PartData PartData_Name="/RibbonRoot.cui" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
   <PartData PartData_Name="/QuickAccessToolbarRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/ScreenMenuRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/ImageMenuRoot.cui" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
@@ -21,4 +21,14 @@
   <PartData PartData_Name="/Menu_Package_Info.xml" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/BOBROV_XDATAPALETTE_16.png" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
   <PartData PartData_Name="/BOBROV_XDATAPALETTE_32.png" PartData_Modified="2026-11-15T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_CREATE_16.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_CREATE_32.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_CREATE_GROUP_16.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_CREATE_GROUP_32.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_UPDATE_16.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_UPDATE_32.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_RULES_16.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_SL_RULES_32.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_DB_EDIT_16.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
+  <PartData PartData_Name="/BOBROV_DB_EDIT_32.png" PartData_Modified="2026-11-23T00:00:00.0000000Z" />
 </MenuPackageParts>

@@ -4,7 +4,7 @@ setlocal
 
 rem BobrovMenu: per-user installation, administrator rights are not required.
 rem Copies AppData\Roaming from the archive into %APPDATA% of the current user.
-rem The bundle holds the Bobrov partial CUIX and three SmartLeader menu DLLs.
+rem The bundle holds the Bobrov partial CUIX.
 
 set "SOURCE=%~dp0AppData\Roaming\Autodesk\ApplicationPlugins\BobrovMenu.bundle"
 set "TARGET=%APPDATA%\Autodesk\ApplicationPlugins\BobrovMenu.bundle"
@@ -26,10 +26,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "Get-ChildItem -LiteralPa
 echo.
 echo Готово.
 echo   %TARGET%
-echo AutoCAD 2020-2024: вкладка Bobrov содержит кнопку «Палитра XDATA».
-echo Кнопка вызывает команду XDATAPALETTE плагина acadPaletteSetXDATA, который устанавливается отдельно.
-echo AutoCAD 2020 и новее: откройте DWG и выберите вкладку ACadSmartLeader.
-echo Для выносок установите ACadSmartLeader 0.1.4 или новее отдельно.
+echo AutoCAD 2020 и новее: откройте вкладку Bobrov на ленте.
+echo Панели: «Палитра XDATA», «Умные выноски», «База данных».
+echo Плагины, которые предоставляют команды кнопок, устанавливаются отдельно.
 echo Подробности - в файле INSTALL.md.
 pause
 exit /b 0

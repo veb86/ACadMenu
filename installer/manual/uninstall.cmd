@@ -20,7 +20,7 @@ if exist "%TARGET%" (
 )
 
 echo Удалено: %TARGET%
-echo При следующем запуске AutoCAD элементы меню Bobrov и ACadSmartLeader исчезнут.
+echo При следующем запуске AutoCAD элементы меню Bobrov исчезнут.
 echo Команды установленных отдельно плагинов доступны из командной строки.
 pause
 exit /b 0

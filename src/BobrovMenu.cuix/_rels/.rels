@@ -19,4 +19,14 @@
   <Relationship Type="CUI" Target="/DigitizerButtonRoot.cui" Id="R0000000000000011" />
   <Relationship Type="Image" Target="/BOBROV_XDATAPALETTE_16.png" Id="R0000000000000012" />
   <Relationship Type="Image" Target="/BOBROV_XDATAPALETTE_32.png" Id="R0000000000000013" />
+  <Relationship Type="Image" Target="/BOBROV_SL_CREATE_16.png" Id="R0000000000000014" />
+  <Relationship Type="Image" Target="/BOBROV_SL_CREATE_32.png" Id="R0000000000000015" />
+  <Relationship Type="Image" Target="/BOBROV_SL_CREATE_GROUP_16.png" Id="R0000000000000016" />
+  <Relationship Type="Image" Target="/BOBROV_SL_CREATE_GROUP_32.png" Id="R0000000000000017" />
+  <Relationship Type="Image" Target="/BOBROV_SL_UPDATE_16.png" Id="R0000000000000018" />
+  <Relationship Type="Image" Target="/BOBROV_SL_UPDATE_32.png" Id="R0000000000000019" />
+  <Relationship Type="Image" Target="/BOBROV_SL_RULES_16.png" Id="R000000000000001a" />
+  <Relationship Type="Image" Target="/BOBROV_SL_RULES_32.png" Id="R000000000000001b" />
+  <Relationship Type="Image" Target="/BOBROV_DB_EDIT_16.png" Id="R000000000000001c" />
+  <Relationship Type="Image" Target="/BOBROV_DB_EDIT_32.png" Id="R000000000000001d" />
 </Relationships>

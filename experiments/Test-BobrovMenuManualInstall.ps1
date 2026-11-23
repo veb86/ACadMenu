@@ -37,10 +37,12 @@ try {
     $sourceBundle = Join-Path $unpacked 'AppData\Roaming\Autodesk\ApplicationPlugins\BobrovMenu.bundle'
     $sourceCuix = Join-Path $sourceBundle 'Contents\BobrovMenu.cuix'
 
-    # The menu bundle is separate from both command providers.
+    # The menu bundle is separate from the command providers.
     $plugin = Join-Path $appData 'Autodesk\ApplicationPlugins\acadPaletteSetXDATA.bundle\PackageContents.xml'
     $leaderPlugin = Join-Path $appData 'Autodesk\ApplicationPlugins\ACadSmartLeader.bundle\PackageContents.xml'
-    foreach ($otherPackage in @($plugin, $leaderPlugin)) {
+    $dbPlugin = Join-Path $appData 'Autodesk\ApplicationPlugins\DatabasePlugin.bundle\PackageContents.xml'
+    $otherPackages = @($plugin, $leaderPlugin, $dbPlugin)
+    foreach ($otherPackage in $otherPackages) {
         New-Item (Split-Path $otherPackage) -ItemType Directory -Force | Out-Null
         Set-Content $otherPackage '<ApplicationPackage />'
     }
@@ -49,32 +51,35 @@ try {
     Assert ($result.Code -eq 0) "install.cmd failed with exit code $($result.Code)."
     Assert (Test-Path (Join-Path $bundle 'PackageContents.xml')) 'install.cmd must copy PackageContents.xml into %APPDATA%.'
     Assert ((Get-FileHash $cuix).Hash -eq (Get-FileHash $sourceCuix).Hash) 'install.cmd must copy BobrovMenu.cuix into %APPDATA%.'
-    foreach ($version in @('AutoCAD2020', 'AutoCAD2021-2024', 'AutoCAD2025')) {
-        $relativePath = "Contents\$version\ACadSmartLeaderMenu.dll"
-        $sourceAssembly = Join-Path $sourceBundle $relativePath
-        $assembly = Join-Path $bundle $relativePath
-        Assert ([Reflection.AssemblyName]::GetAssemblyName($assembly).Name -eq 'ACadSmartLeaderMenu') "The $version menu DLL must be a managed assembly."
-        Assert ((Get-FileHash $assembly).Hash -eq (Get-FileHash $sourceAssembly).Hash) "install.cmd must copy the menu DLL for $version into %APPDATA%."
-    }
+    Assert (@(Get-ChildItem $bundle -Recurse -File).Count -eq 2) 'The bundle must contain just the manifest and the CUIX.'
     Assert ($null -eq (Get-Item $cuix -Stream Zone.Identifier -ErrorAction SilentlyContinue)) 'install.cmd must unblock the installed files.'
     Assert ($result.Output -match 'Готово') 'install.cmd must report success in Russian (UTF-8 code page).'
 
-    # Reinstall over an older version: stale files of the bundle are removed.
-    $stale = Join-Path $bundle 'Contents\stale.txt'
-    Set-Content $stale 'old version'
+    # Simulate upgrading from v0.1, which installed three menu assemblies.
+    $oldMenuDirs = foreach ($version in @('AutoCAD2020', 'AutoCAD2021-2024', 'AutoCAD2025')) {
+        $directory = Join-Path $bundle "Contents\$version"
+        New-Item $directory -ItemType Directory | Out-Null
+        Set-Content (Join-Path $directory 'ACadSmartLeaderMenu.dll') 'old version'
+        $directory
+    }
     Set-Content $cuix 'old version' -Stream Zone.Identifier
     $result = Invoke-Cmd (Join-Path $unpacked 'install.cmd') $appData
     Assert ($result.Code -eq 0) 'Reinstalling must succeed.'
-    Assert (-not (Test-Path $stale)) 'Reinstalling must remove the files of the previous version.'
+    foreach ($directory in $oldMenuDirs) {
+        Assert (-not (Test-Path $directory)) "Reinstalling must remove the previous menu assemblies in $directory."
+    }
+    Assert (@(Get-ChildItem $bundle -Recurse -File).Count -eq 2) 'Only the CUIX and its manifest should remain after upgrading.'
     Assert ($null -eq (Get-Item $cuix -Stream Zone.Identifier -ErrorAction SilentlyContinue)) 'Reinstalling must unblock BobrovMenu.cuix.'
-    Assert (Test-Path $plugin) 'install.cmd must not touch acadPaletteSetXDATA.bundle.'
-    Assert (Test-Path $leaderPlugin) 'install.cmd must not touch ACadSmartLeader.bundle.'
+    foreach ($otherPackage in $otherPackages) {
+        Assert (Test-Path $otherPackage) "install.cmd must preserve $otherPackage."
+    }
 
     $result = Invoke-Cmd (Join-Path $unpacked 'uninstall.cmd') $appData
     Assert ($result.Code -eq 0) "uninstall.cmd failed with exit code $($result.Code)."
     Assert (-not (Test-Path $bundle)) 'uninstall.cmd must remove BobrovMenu.bundle.'
-    Assert (Test-Path $plugin) 'uninstall.cmd must not touch acadPaletteSetXDATA.bundle (spec, section 8, check 10).'
-    Assert (Test-Path $leaderPlugin) 'uninstall.cmd must not touch ACadSmartLeader.bundle.'
+    foreach ($otherPackage in $otherPackages) {
+        Assert (Test-Path $otherPackage) "uninstall.cmd must preserve $otherPackage."
+    }
     $result = Invoke-Cmd (Join-Path $unpacked 'uninstall.cmd') $appData
     Assert ($result.Code -eq 0) 'uninstall.cmd must succeed when nothing is installed.'
 

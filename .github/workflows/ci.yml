@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 env:
-  RELEASE_VERSION: v0.1.${{ github.run_number }}
+  RELEASE_VERSION: v0.2.${{ github.run_number }}
 
 jobs:
   test:
@@ -43,14 +43,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '10.0.x'
-      - name: Build the SmartLeader menu for all three AutoCAD SDK targets
-        run: dotnet build src/ACadSmartLeaderMenu -c Release -m:1
-      - name: Verify command mapping, selection and menu lifecycle
-        timeout-minutes: 5
-        run: dotnet run --project tests/ACadSmartLeaderMenu.Tests -c Release
       - name: Package the manual install archive
         env:
           COMMIT_SHA: ${{ github.sha }}
@@ -67,11 +59,9 @@ jobs:
           @"
           BobrovMenu $env:RELEASE_VERSION (commit $env:COMMIT_SHA)
 
-          Menu and ribbon tab Bobrov for AutoCAD 2020-2024 x64 with the «Палитра XDATA» button,
-          which runs the XDATAPALETTE command of acadPaletteSetXDATA (installed separately).
-
-          ACadSmartLeader ribbon tab and XDATA-aware right-click update for AutoCAD 2020,
-          2021-2024 and 2025+ x64. Install or update ACadSmartLeader to 0.1.4 or later separately.
+          The Bobrov partial CUIX for AutoCAD 2020+ x64 includes the XDATA palette,
+          four smart leader buttons and the DB_EDIT button in its own database panel.
+          Install the plugins that provide these commands separately.
 
           BobrovMenu-manual-install-$env:RELEASE_VERSION.zip - per-user install without administrator rights.
           Extract the archive and run install.cmd, or copy its AppData folder into %USERPROFILE%.

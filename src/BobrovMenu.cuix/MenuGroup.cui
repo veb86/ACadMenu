@@ -13,5 +13,65 @@
         <CLICommand>XDATAPALETTE</CLICommand>
       </Macro>
     </MenuMacro>
+    <MenuMacro UID="ID_BOBROV_SL_CREATE">
+      <Macro type="Any">
+        <Revision MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <Name xlate="true" UID="XLS_BOBROV_SL_CREATE_NAME">Создать</Name>
+        <Command>$M=$(if,$(getvar,cmdactive),^C^C)_SL_CREATE;</Command>
+        <HelpString xlate="true" UID="XLS_BOBROV_SL_CREATE_HELP">Создать умную выноску (SL_CREATE)</HelpString>
+        <SmallImage Name="BOBROV_SL_CREATE_16.png" />
+        <LargeImage Name="BOBROV_SL_CREATE_32.png" />
+        <CLICommand>SL_CREATE</CLICommand>
+      </Macro>
+    </MenuMacro>
+    <MenuMacro UID="ID_BOBROV_SL_CREATE_GROUP">
+      <Macro type="Any">
+        <Revision MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <Name xlate="true" UID="XLS_BOBROV_SL_CREATE_GROUP_NAME">Создать групповую</Name>
+        <Command>$M=$(if,$(getvar,cmdactive),^C^C)_SL_CREATE_GROUP;</Command>
+        <HelpString xlate="true" UID="XLS_BOBROV_SL_CREATE_GROUP_HELP">Создать групповую умную выноску (SL_CREATE_GROUP)</HelpString>
+        <SmallImage Name="BOBROV_SL_CREATE_GROUP_16.png" />
+        <LargeImage Name="BOBROV_SL_CREATE_GROUP_32.png" />
+        <CLICommand>SL_CREATE_GROUP</CLICommand>
+      </Macro>
+    </MenuMacro>
+    <MenuMacro UID="ID_BOBROV_SL_UPDATE">
+      <Macro type="Any">
+        <Revision MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <Name xlate="true" UID="XLS_BOBROV_SL_UPDATE_NAME">Обновить</Name>
+        <Command>$M=$(if,$(getvar,cmdactive),^C^C)_SL_UPDATE;</Command>
+        <HelpString xlate="true" UID="XLS_BOBROV_SL_UPDATE_HELP">Обновить умные выноски (SL_UPDATE)</HelpString>
+        <SmallImage Name="BOBROV_SL_UPDATE_16.png" />
+        <LargeImage Name="BOBROV_SL_UPDATE_32.png" />
+        <CLICommand>SL_UPDATE</CLICommand>
+      </Macro>
+    </MenuMacro>
+    <MenuMacro UID="ID_BOBROV_SL_RULES">
+      <Macro type="Any">
+        <Revision MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <Name xlate="true" UID="XLS_BOBROV_SL_RULES_NAME">Правила</Name>
+        <Command>$M=$(if,$(getvar,cmdactive),^C^C)_SL_RULES;</Command>
+        <HelpString xlate="true" UID="XLS_BOBROV_SL_RULES_HELP">Открыть редактор правил умных выносок (SL_RULES)</HelpString>
+        <SmallImage Name="BOBROV_SL_RULES_16.png" />
+        <LargeImage Name="BOBROV_SL_RULES_32.png" />
+        <CLICommand>SL_RULES</CLICommand>
+      </Macro>
+    </MenuMacro>
+    <MenuMacro UID="ID_BOBROV_DB_EDIT">
+      <Macro type="Any">
+        <Revision MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <ModifiedRev MajorVersion="23" MinorVersion="1" UserVersion="1" />
+        <Name xlate="true" UID="XLS_BOBROV_DB_EDIT_NAME">Редактор БД</Name>
+        <Command>$M=$(if,$(getvar,cmdactive),^C^C)_DB_EDIT;</Command>
+        <HelpString xlate="true" UID="XLS_BOBROV_DB_EDIT_HELP">Открыть редактор базы данных (DB_EDIT)</HelpString>
+        <SmallImage Name="BOBROV_DB_EDIT_16.png" />
+        <LargeImage Name="BOBROV_DB_EDIT_32.png" />
+        <CLICommand>DB_EDIT</CLICommand>
+      </Macro>
+    </MenuMacro>
   </MacroGroup>
 </MenuGroup>
